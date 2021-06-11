@@ -16,7 +16,10 @@ public abstract class RaceResponsibility {
 
     protected RaceResponsibility nextInChain;
 
-    public abstract Race suggestRace(List<Attribute> attributeList);
+    public Race suggestRace(List<Attribute> attributeList) {
+        return appliesToRace(attributeList) ? suggestThis() : nextInChain.suggestRace(attributeList);
+    }
 
     protected abstract boolean appliesToRace(List<Attribute> attributeList);
+    protected abstract Race suggestThis();
 }

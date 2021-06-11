@@ -12,16 +12,13 @@ public class HalfElfResponsibility extends RaceResponsibility {
     }
 
     @Override
-    public Race suggestRace(List<Attribute> attributeList) {
-        if(appliesToRace(attributeList)) {
-            return Race.HALF_ELF;
-        }
-        return nextInChain.suggestRace(attributeList);
-    }
-
-    @Override
     protected boolean appliesToRace(List<Attribute> attributeList) {
         return attributeList.get(CHARISMA).getValue() > 10 &&
                attributeList.get(WISDOM).getValue() > 10;
+    }
+
+    @Override
+    protected Race suggestThis() {
+        return Race.HALF_ELF;
     }
 }

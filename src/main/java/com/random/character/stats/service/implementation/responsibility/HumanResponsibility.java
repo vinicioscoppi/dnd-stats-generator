@@ -12,15 +12,12 @@ public class HumanResponsibility extends RaceResponsibility {
     }
 
     @Override
-    public Race suggestRace(List<Attribute> attributeList) {
-        if (appliesToRace(attributeList)) {
-            return Race.HUMAN;
-        }
-        return nextInChain.suggestRace(attributeList);
+    protected boolean appliesToRace(List<Attribute> attributeList) {
+        return attributeList.stream().filter(attr -> attr.getValue() >= 10).count() >= 3;
     }
 
     @Override
-    protected boolean appliesToRace(List<Attribute> attributeList) {
-        return attributeList.stream().filter(attr -> attr.getValue() >= 10).count() >= 3;
+    protected Race suggestThis() {
+        return Race.HUMAN;
     }
 }

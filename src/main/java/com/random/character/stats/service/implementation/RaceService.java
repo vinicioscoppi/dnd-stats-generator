@@ -4,8 +4,6 @@ import com.random.character.stats.model.Attribute;
 import com.random.character.stats.model.Race;
 import com.random.character.stats.service.IRaceService;
 import com.random.character.stats.service.implementation.responsibility.*;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

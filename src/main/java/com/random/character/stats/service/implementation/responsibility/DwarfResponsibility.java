@@ -12,16 +12,13 @@ public class DwarfResponsibility extends RaceResponsibility {
     }
 
     @Override
-    public Race suggestRace(List<Attribute> attributeList) {
-        if(appliesToRace(attributeList)) {
-            return Race.DWARF;
-        }
-        return nextInChain.suggestRace(attributeList);
-    }
-
-    @Override
     protected boolean appliesToRace(List<Attribute> attributeList) {
         return attributeList.get(CONSTITUTION).getValue() > 10 &&
                attributeList.get(CHARISMA).getValue() < 10;
+    }
+
+    @Override
+    protected Race suggestThis() {
+        return Race.DWARF;
     }
 }

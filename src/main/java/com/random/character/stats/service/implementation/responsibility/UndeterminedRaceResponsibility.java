@@ -12,15 +12,12 @@ public class UndeterminedRaceResponsibility extends RaceResponsibility {
     }
 
     @Override
-    public Race suggestRace(List<Attribute> attributeList) {
-        if(appliesToRace(attributeList)) {
-            return Race.UNDETERMINED;
-        }
-        return nextInChain.suggestRace(attributeList);
+    protected boolean appliesToRace(List<Attribute> attributeList) {
+        return true;
     }
 
     @Override
-    protected boolean appliesToRace(List<Attribute> attributeList) {
-        return true;
+    protected Race suggestThis() {
+        return Race.UNDETERMINED;
     }
 }

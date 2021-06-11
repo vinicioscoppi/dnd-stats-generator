@@ -12,16 +12,13 @@ public class OrcResponsibility extends RaceResponsibility {
     }
 
     @Override
-    public Race suggestRace(List<Attribute> attributeList) {
-        if (appliesToRace(attributeList)) {
-            return Race.ORC;
-        }
-        return nextInChain.suggestRace(attributeList);
-    }
-
-    @Override
     protected boolean appliesToRace(List<Attribute> attributeList) {
         return attributeList.get(STRENGTH).getValue() > 10 &&
                attributeList.get(INTELLIGENCE).getValue() < 10;
+    }
+
+    @Override
+    protected Race suggestThis() {
+        return Race.ORC;
     }
 }

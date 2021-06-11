@@ -12,16 +12,13 @@ public class HalflingResponsibility extends RaceResponsibility {
     }
 
     @Override
-    public Race suggestRace(List<Attribute> attributeList) {
-        if(appliesToRace(attributeList)) {
-            return Race.HALFLING;
-        }
-        return nextInChain.suggestRace(attributeList);
-    }
-
-    @Override
     protected boolean appliesToRace(List<Attribute> attributeList) {
         return attributeList.get(DEXTERITY).getValue() > 10 &&
                attributeList.get(STRENGTH).getValue() < 10;
+    }
+
+    @Override
+    protected Race suggestThis() {
+        return Race.HALFLING;
     }
 }
