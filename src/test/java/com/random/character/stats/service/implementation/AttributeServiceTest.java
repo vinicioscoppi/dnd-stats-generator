@@ -34,8 +34,9 @@ public class AttributeServiceTest {
     @Test
     public void itShouldReturnTheExpectedStandardAttributesList() {
         List<Attribute> expectedAttributeList = TestHelper.getTestAttributeList();
-        when(modifierDeterminationService.determineModifierFromValue(anyInt())).thenReturn(TestHelper.TEST_MODIFIER);
-        when(rollStrategy.roll()).thenReturn(TestHelper.TEST_VALUE);
+        when(modifierDeterminationService.determineModifierFromValue(anyInt())).thenReturn(TestHelper.ANY_MODIFIER);
+        when(rollStrategy.roll()).thenReturn(TestHelper.ANY_VALID_VALUE);
+        
         List<Attribute> returnedAttributes = service.getAttributes(rollStrategy);
 
         assertThat(returnedAttributes, equalTo(expectedAttributeList));
@@ -55,7 +56,7 @@ public class AttributeServiceTest {
 
     @Test
     public void itShouldThrowInvalidModifierExceptionWhenModifierIsInvalid() {
-        when(rollStrategy.roll()).thenReturn(TestHelper.TEST_VALUE);
+        when(rollStrategy.roll()).thenReturn(TestHelper.ANY_VALID_VALUE);
         when(modifierDeterminationService.determineModifierFromValue(anyInt())).thenReturn(-4).thenReturn(5);
 
         assertThrows(InvalidModifierException.class, () -> {

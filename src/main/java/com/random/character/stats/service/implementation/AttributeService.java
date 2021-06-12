@@ -11,6 +11,8 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 @Service
 public class AttributeService implements IAttributeService {
@@ -25,11 +27,7 @@ public class AttributeService implements IAttributeService {
     private IModifierService modifierService;
 
     public List<Attribute> getAttributes(IRollStrategy rollStrategy) {
-        List<Attribute> attributes = new ArrayList<>(ATTRIBUTES_COUNT);
-        for (var i = 0; i < ATTRIBUTES_COUNT; i++) {
-            attributes.add(getAttribute(rollStrategy));
-        }
-        return attributes;
+        return Stream.generate(() -> getAttribute(rollStrategy)).limit(ATTRIBUTES_COUNT).collect(Collectors.toList());
     }
 
     private Attribute getAttribute(IRollStrategy rollStrategy) {

@@ -21,6 +21,8 @@ import org.springframework.context.ApplicationContext;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
@@ -132,10 +134,10 @@ public class CharacterServiceTest {
     @Test
     public void itShouldNotThrowInvalidRollsExceptionWhenAttributeRollsListLengthEqualsToStatsCount() {
         int statsCount = 6;
-        List<Attribute> attributes = new ArrayList<>();
-        for (var i = 0; i < statsCount; i++) {
-            attributes.add(new Attribute(10, 0));
-        }
+        List<Attribute> attributes = Stream.generate(
+                                                () -> new Attribute(TestHelper.ANY_VALID_VALUE,
+                                                                    TestHelper.ANY_MODIFIER)
+                                                    ).limit(statsCount).collect(Collectors.toList());
 
         when(attributeService.getAttributes(any(IRollStrategy.class))).thenReturn(attributes);
 

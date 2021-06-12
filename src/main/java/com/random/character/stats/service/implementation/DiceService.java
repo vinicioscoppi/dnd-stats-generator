@@ -7,6 +7,8 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 @Service
 public class DiceService implements IDiceService {
@@ -19,10 +21,6 @@ public class DiceService implements IDiceService {
     }
 
     public List<Integer> rollOneDSixNTimes(int n) {
-        var roll = new ArrayList<Integer>();
-        for (var i = 0; i < n; i++) {
-            roll.add(rollOneDSix());
-        }
-        return roll;
+        return Stream.generate(this::rollOneDSix).limit(n).collect(Collectors.toList());
     }
 }

@@ -2,9 +2,11 @@ package com.random.character.stats.service.implementation.responsibility;
 
 import com.random.character.stats.model.Attribute;
 import com.random.character.stats.model.Race;
+import lombok.NoArgsConstructor;
 
 import java.util.List;
 
+@NoArgsConstructor
 public class HalfElfResponsibility extends RaceResponsibility {
 
     public HalfElfResponsibility(UndeterminedRaceResponsibility nextInChain) {
