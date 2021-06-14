@@ -6,11 +6,10 @@ import com.random.character.stats.model.exception.InvalidValueException;
 import com.random.character.stats.service.IAttributeService;
 import com.random.character.stats.service.IModifierService;
 import com.random.character.stats.service.IRollStrategy;
+import com.random.character.stats.service.dto.AttributesDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -26,8 +25,11 @@ public class AttributeService implements IAttributeService {
     @Autowired
     private IModifierService modifierService;
 
-    public List<Attribute> getAttributes(IRollStrategy rollStrategy) {
-        return Stream.generate(() -> getAttribute(rollStrategy)).limit(ATTRIBUTES_COUNT).collect(Collectors.toList());
+    public AttributesDto getAttributes(IRollStrategy rollStrategy) {
+        return new AttributesDto(Stream.generate(() -> getAttribute(rollStrategy))
+                                       .limit(ATTRIBUTES_COUNT)
+                                       .collect(Collectors.toList())
+        );
     }
 
     private Attribute getAttribute(IRollStrategy rollStrategy) {

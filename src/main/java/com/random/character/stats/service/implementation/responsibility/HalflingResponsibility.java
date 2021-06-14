@@ -1,10 +1,8 @@
 package com.random.character.stats.service.implementation.responsibility;
 
-import com.random.character.stats.model.Attribute;
 import com.random.character.stats.model.Race;
+import com.random.character.stats.service.dto.AttributesDto;
 import lombok.NoArgsConstructor;
-
-import java.util.List;
 
 @NoArgsConstructor
 public class HalflingResponsibility extends RaceResponsibility {
@@ -14,9 +12,9 @@ public class HalflingResponsibility extends RaceResponsibility {
     }
 
     @Override
-    protected boolean appliesToRace(List<Attribute> attributeList) {
-        return attributeList.get(DEXTERITY).getValue() > 10 &&
-               attributeList.get(STRENGTH).getValue() < 10;
+    protected boolean appliesToRace(AttributesDto attributesDto) {
+        return attributesDto.getDexterity().getValue() > 10 &&
+               attributesDto.getStrength().getValue() < 10;
     }
 
     @Override

@@ -1,17 +1,15 @@
 package com.random.character.stats.service.implementation;
 
-import com.random.character.stats.model.Attribute;
 import com.random.character.stats.model.Race;
 import com.random.character.stats.service.IRaceService;
+import com.random.character.stats.service.dto.AttributesDto;
 import com.random.character.stats.service.implementation.responsibility.*;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
 
 @Service
 public class RaceService implements IRaceService {
 
-    public Race suggestRace(List<Attribute> attributes) {
+    public Race suggestRace(AttributesDto attributesDto) {
         return new HumanResponsibility(
                    new OrcResponsibility(
                             new DwarfResponsibility(
@@ -20,6 +18,6 @@ public class RaceService implements IRaceService {
                                                 new GnomeResponsibility(
                                                         new HalfElfResponsibility(
                                                                 new UndeterminedRaceResponsibility())))))))
-                .suggestRace(attributes);
+                .suggestRace(attributesDto);
     }
 }

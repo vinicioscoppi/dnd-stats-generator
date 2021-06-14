@@ -1,11 +1,8 @@
 package com.random.character.stats.model;
 
-import com.random.character.stats.model.exception.InvalidRollsException;
-import lombok.AllArgsConstructor;
+import com.random.character.stats.service.dto.AttributesDto;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
-
-import java.util.List;
 
 @Getter
 @EqualsAndHashCode
@@ -20,17 +17,17 @@ public class Character {
     private final Attribute wisdom;
     private final Attribute charisma;
 
-    public Character(List<Attribute> attributeRolls, Race race) {
+    public Character(AttributesDto attributesDto, Race race) {
         this.race = race;
-        this.strength = attributeRolls.get(0);
-        this.dexterity = attributeRolls.get(1);
-        this.constitution = attributeRolls.get(2);
-        this.intelligence = attributeRolls.get(3);
-        this.wisdom = attributeRolls.get(4);
-        this.charisma = attributeRolls.get(5);
+        this.strength = attributesDto.getStrength();
+        this.dexterity = attributesDto.getDexterity();
+        this.constitution = attributesDto.getConstitution();
+        this.intelligence = attributesDto.getIntelligence();
+        this.wisdom = attributesDto.getWisdom();
+        this.charisma = attributesDto.getCharisma();
     }
 
-    public Character(List<Attribute> attributeRolls) {
-        this(attributeRolls, Race.UNDETERMINED);
+    public Character(AttributesDto attributesDto) {
+        this(attributesDto, Race.UNDETERMINED);
     }
 }

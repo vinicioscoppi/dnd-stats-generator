@@ -1,7 +1,6 @@
 package com.random.character.stats.service.implementation;
 
 import com.random.character.stats.model.Character;
-import com.random.character.stats.model.exception.InvalidRollsException;
 import com.random.character.stats.service.IAttributeService;
 import com.random.character.stats.service.ICharacterService;
 import com.random.character.stats.service.IRaceService;
@@ -15,8 +14,6 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class CharacterService implements ICharacterService {
-
-    private static final int STATS_COUNT = 6;
 
     @Autowired
     private IAttributeService attributeService;
@@ -44,10 +41,7 @@ public class CharacterService implements ICharacterService {
     }
 
     private Character getCharacter(IRollStrategy rollStrategy) {
-        var attributes = attributeService.getAttributes(rollStrategy);
-        if(attributes == null || attributes.size() != STATS_COUNT) {
-            throw new InvalidRollsException(attributes);
-        }
-        return new Character(attributes, raceService.suggestRace(attributes));
+        var attributesDto = attributeService.getAttributes(rollStrategy);
+        return new Character(attributesDto, raceService.suggestRace(attributesDto));
     }
 }

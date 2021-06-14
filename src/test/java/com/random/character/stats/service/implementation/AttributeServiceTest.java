@@ -32,14 +32,14 @@ public class AttributeServiceTest {
     private IRollStrategy rollStrategy;
 
     @Test
-    public void itShouldReturnTheExpectedStandardAttributesList() {
-        List<Attribute> expectedAttributeList = TestHelper.getTestAttributeList();
+    public void itShouldReturnTheExpectedStandardAttributesDto() {
+        var expectedAttributesDto = TestHelper.getTestAttributesDto();
         when(modifierDeterminationService.determineModifierFromValue(anyInt())).thenReturn(TestHelper.ANY_MODIFIER);
         when(rollStrategy.roll()).thenReturn(TestHelper.ANY_VALID_VALUE);
-        
-        List<Attribute> returnedAttributes = service.getAttributes(rollStrategy);
 
-        assertThat(returnedAttributes, equalTo(expectedAttributeList));
+        var returnedAttributesDto = service.getAttributes(rollStrategy);
+
+        assertThat(returnedAttributesDto, equalTo(expectedAttributesDto));
     }
 
     @Test

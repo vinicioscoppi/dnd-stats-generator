@@ -1,9 +1,7 @@
 package com.random.character.stats.service.implementation.responsibility;
 
-import com.random.character.stats.model.Attribute;
 import com.random.character.stats.model.Race;
-
-import java.util.List;
+import com.random.character.stats.service.dto.AttributesDto;
 
 public class UndeterminedRaceResponsibility extends RaceResponsibility {
 
@@ -12,7 +10,7 @@ public class UndeterminedRaceResponsibility extends RaceResponsibility {
     }
 
     @Override
-    protected boolean appliesToRace(List<Attribute> attributeList) {
+    protected boolean appliesToRace(AttributesDto attributesDto) {
         return true;
     }
 

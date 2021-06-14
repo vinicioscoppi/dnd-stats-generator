@@ -1,10 +1,8 @@
 package com.random.character.stats.service.implementation.responsibility;
 
-import com.random.character.stats.model.Attribute;
 import com.random.character.stats.model.Race;
+import com.random.character.stats.service.dto.AttributesDto;
 import lombok.NoArgsConstructor;
-
-import java.util.List;
 
 @NoArgsConstructor
 public class DwarfResponsibility extends RaceResponsibility {
@@ -14,9 +12,9 @@ public class DwarfResponsibility extends RaceResponsibility {
     }
 
     @Override
-    protected boolean appliesToRace(List<Attribute> attributeList) {
-        return attributeList.get(CONSTITUTION).getValue() > 10 &&
-               attributeList.get(CHARISMA).getValue() < 10;
+    protected boolean appliesToRace(AttributesDto attributesDto) {
+        return attributesDto.getConstitution().getValue() > 10 &&
+               attributesDto.getCharisma().getValue() < 10;
     }
 
     @Override
